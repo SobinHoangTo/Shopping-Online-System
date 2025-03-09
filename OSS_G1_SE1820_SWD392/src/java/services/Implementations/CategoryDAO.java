@@ -20,7 +20,7 @@ public class CategoryDAO extends GeneralDAO<Category> implements ICategoryDAO {
     public ArrayList<Category> All() {
         try {
             ArrayList<Category> list = new ArrayList<>();
-            String sql = "select * from category";
+            String sql = "select * from categories";
             PreparedStatement ps = connection.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
@@ -38,7 +38,7 @@ public class CategoryDAO extends GeneralDAO<Category> implements ICategoryDAO {
     @Override
     public Category Read(int id) {
         try {
-            String sql = "select * from sample where id=?";
+            String sql = "select * from categories where id=?";
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
@@ -55,7 +55,7 @@ public class CategoryDAO extends GeneralDAO<Category> implements ICategoryDAO {
     @Override
     public boolean Create(Category entity) {
         try {
-            String sql = "insert into category (name) values (?) ";
+            String sql = "insert into categories (name) values (?) ";
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setString(1, entity.getName());
             int rowsAffected = ps.executeUpdate();
@@ -69,7 +69,7 @@ public class CategoryDAO extends GeneralDAO<Category> implements ICategoryDAO {
     @Override
     public boolean Update(Category entity) {
         try {
-            String sql = "update category set name=? where id=?";
+            String sql = "update categories set name=? where id=?";
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setString(1, entity.getName());
             ps.setInt(2, entity.getId());
@@ -84,7 +84,7 @@ public class CategoryDAO extends GeneralDAO<Category> implements ICategoryDAO {
     @Override
     public boolean Delete(int id) {
         try {
-            String sql = "delete from category where id=?";
+            String sql = "delete from categories where id=?";
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setInt(1, id);
             int rowsAffected = ps.executeUpdate();
@@ -98,7 +98,7 @@ public class CategoryDAO extends GeneralDAO<Category> implements ICategoryDAO {
     @Override
     public Category GetByName(String name) {
         try {
-            String sql = "select * from category where name = ?";
+            String sql = "select * from categories where name = ?";
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setString(1, name);
             ResultSet rs = ps.executeQuery();

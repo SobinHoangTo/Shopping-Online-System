@@ -58,14 +58,14 @@ CREATE TABLE [users] (
 )
 GO
 
-CREATE TABLE [category] (
+CREATE TABLE [categories] (
   [id] integer identity(1,1) PRIMARY KEY,
   [name] nvarchar(255) unique,
   [status] nvarchar(225) Null
 )
 GO
 
-CREATE TABLE [product] (
+CREATE TABLE [products] (
   [id] integer identity(1,1) PRIMARY KEY,
   [name] nvarchar(255),
   [price] float,
@@ -76,7 +76,7 @@ CREATE TABLE [product] (
 )
 GO
 
-CREATE TABLE [order] (
+CREATE TABLE [orders] (
   [id] integer identity(1,1) PRIMARY KEY,
   [userId] integer,
   [address] nvarchar(255),
@@ -88,7 +88,7 @@ CREATE TABLE [order] (
 )
 GO
 
-CREATE TABLE [orderDetail] (
+CREATE TABLE [orderDetails] (
   [id] integer identity(1,1) PRIMARY KEY,
   [orderId] integer,
   [productId] integer,
@@ -107,39 +107,3 @@ GO
 
 ALTER TABLE [orderDetail] ADD FOREIGN KEY ([orderId]) REFERENCES [product] ([id])
 GO
-
-
--- Insert into users
-INSERT INTO [users] ([email], [password], [fullname], [role]) VALUES
-('admin@example.com', 'admin123', 'Administrator', 'Admin'),
-('staff@example.com', 'staff123', 'Staff Member', 'Staff'),
-('customer1@example.com', 'cust123', 'Customer One', 'Customer'),
-('customer2@example.com', 'cust123', 'Customer Two', 'Customer');
-
--- Insert into category
-INSERT INTO [category] ([name], [status]) VALUES
-('Electronics', 'Active'),
-('Clothing', 'Active'),
-('Books', 'Inactive'),
-('Home Appliances', 'Active');
-
--- Insert into product
-INSERT INTO [product] ([name], [price], [description], [image], [status], [categoryId]) VALUES
-('Laptop', 999.99, 'High-performance laptop', 'laptop.jpg', 'Available', 1),
-('Smartphone', 599.99, 'Latest model smartphone', 'smartphone.jpg', 'Available', 1),
-('T-shirt', 19.99, 'Cotton T-shirt', 'tshirt.jpg', 'Available', 2),
-('Cookbook', 14.99, 'Healthy recipes cookbook', 'cookbook.jpg', 'Out of Stock', 3),
-('Microwave', 89.99, 'Compact microwave oven', 'microwave.jpg', 'Available', 4);
-
--- Insert into order
-INSERT INTO [order] ([userId], [address], [paymentMethod], [paymentStatus], [shippingStatus], [status], [amount]) VALUES
-(3, '123 Main St, City A', 'Credit Card', 'Paid', 'Shipped', 'Completed', 1019.98),
-(4, '456 Oak St, City B', 'PayPal', 'Pending', 'Processing', 'Pending', 34.98);
-
--- Insert into orderDetail
-INSERT INTO [orderDetail] ([orderId], [productId], [quantity]) VALUES
-(1, 1, 1), -- 1 Laptop
-(1, 3, 1), -- 1 T-shirt
-(2, 4, 2); -- 2 Cookbooks
-
-select * from category

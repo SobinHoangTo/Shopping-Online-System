@@ -6,11 +6,10 @@ package Type.Enum;
 
 /**
  *
- * @author admin
+ * @author vdqvi
  */
-public class UserRoles {
+public class GeneralStatus {
 
-    public static final String ADMIN = "admin";
-    public static final String SALE = "sale";
-    public static final String CUSTOMER = "customer";
+    public static final String ACTIVE = "active";
+    public static final String INACTIVE = "inactive";
 }

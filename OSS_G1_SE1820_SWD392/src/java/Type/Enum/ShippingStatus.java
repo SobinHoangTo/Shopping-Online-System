@@ -9,6 +9,7 @@ package Type.Enum;
  * @author admin
  */
 public class ShippingStatus {
+
     public static final String PICKING = "picking";
     public static final String PICKED = "picked";
     public static final String DELIVERING = "delivering";

@@ -1,30 +1,31 @@
 package data;
 
-import java.sql.PreparedStatement;
+import Type.Enum.GeneralStatus;
 import model.Category;
+import services.Implementations.CategoryDAO;
+import services.Interfaces.ICategoryDAO;
 
-public class InitData extends DBContext {
+public class InitData {
 
     public final Category[] CATEGORY_LIST = {
-        new Category("Toy", "Active"),
-        new Category("Jewelry", "Active"),
-    };
-            
+        new Category("Electronics", GeneralStatus.ACTIVE),
+        new Category("Books", GeneralStatus.ACTIVE),
+        new Category("Clothing", GeneralStatus.ACTIVE),
+        new Category("Home Appliances", GeneralStatus.ACTIVE)};
+
     public void SeedCategoryData() {
-        for (Category cate : CATEGORY_LIST) {
-            try {
-                String sql = "insert into category (name) values (?)";
-                PreparedStatement ps = connection.prepareStatement(sql);
-                ps.setString(1, cate.getName());
-                ps.executeUpdate();
-            } catch (Exception a) {
-                System.err.println(a.getMessage());
-            }
+        ICategoryDAO categoryDAO = new CategoryDAO();
+        for (Category category : CATEGORY_LIST) {
+            categoryDAO.Create(category);
         }
     }
 
+    //TODO: Add seed data for others (Products, Users, ...)
+    
     public static void main(String[] args) {
         InitData init = new InitData();
         init.SeedCategoryData();
+//        init.SeedUserData();
+//        init.SeedProductData();
     }
 }
