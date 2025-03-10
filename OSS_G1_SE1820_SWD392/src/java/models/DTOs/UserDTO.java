@@ -1,16 +1,18 @@
-package model;
+package models.DTOs;
 
-public class User {
+public class UserDTO {
+
     private int id;
     private String email;
-    private String password;
     private String fullname;
     private String role;
 
-    public User(int id, String email, String password, String fullname, String role) {
+    public UserDTO() {
+    }
+
+    public UserDTO(int id, String email, String fullname, String role) {
         this.id = id;
         this.email = email;
-        this.password = password;
         this.fullname = fullname;
         this.role = role;
     }
@@ -31,14 +33,6 @@ public class User {
         this.email = email;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
     public String getFullname() {
         return fullname;
     }
@@ -54,9 +48,5 @@ public class User {
     public void setRole(String role) {
         this.role = role;
     }
-
-    @Override
-    public String toString() {
-        return "User{" + "id=" + id + ", email=" + email + ", fullname=" + fullname + ", role=" + role + '}';
-    }
+    
 }

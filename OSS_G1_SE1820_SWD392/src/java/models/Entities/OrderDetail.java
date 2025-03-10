@@ -1,4 +1,4 @@
-package model;
+package models.Entities;
 
 public class OrderDetail {
     private int id;

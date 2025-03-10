@@ -2,14 +2,14 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package services.Implementations;
+package DAL.Implements;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import model.Sample;
-import services.Interfaces.ISampleDAO;
+import models.Entities.Sample;
+import DAL.Interfaces.ISampleDAO;
 
 /**
  *
