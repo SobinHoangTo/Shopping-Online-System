@@ -2,16 +2,15 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package services.Interfaces;
-
-import model.Sample;
+package model.Enum;
 
 /**
  *
- * @author vdqvi
+ * @author admin
  */
-public interface ISampleDAO extends IDAO<Sample> {
+public class UserRoles {
 
-    Sample ReadByTitle(String title);
-
+    public static final String ADMIN = "admin";
+    public static final String SALE = "sale";
+    public static final String CUSTOMER = "customer";
 }

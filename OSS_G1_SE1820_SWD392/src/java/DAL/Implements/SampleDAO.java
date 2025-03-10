@@ -1,26 +1,33 @@
-package services.Implementations;
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package DAL.Implements;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.PreparedStatement;
 import java.util.ArrayList;
-import model.Category;
-import services.Interfaces.ICategoryDAO;
+import Model.Entity.Sample;
+import DAL.Interfaces.ISampleDAO;
 
-public class CategoryDAO extends GeneralDAO<Category> implements ICategoryDAO {
+/**
+ *
+ * @author vdqvi
+ */
+public class SampleDAO extends GeneralDAO<Sample> implements ISampleDAO {
 
     @Override
-    public Category GetByResultSet(ResultSet rs) throws SQLException {
-        return new Category(rs.getInt("id"),
-                rs.getString("name"),
-                rs.getString("status"));
+    public Sample GetByResultSet(ResultSet rs) throws SQLException {
+        return new Sample(rs.getInt("id"),
+                rs.getString("title"));
     }
 
     @Override
-    public ArrayList<Category> All() {
+    public ArrayList<Sample> All() {
         try {
-            ArrayList<Category> list = new ArrayList<>();
-            String sql = "select * from categories";
+            ArrayList<Sample> list = new ArrayList<>();
+            String sql = "select * from sample";
             PreparedStatement ps = connection.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
@@ -36,13 +43,13 @@ public class CategoryDAO extends GeneralDAO<Category> implements ICategoryDAO {
     }
 
     @Override
-    public Category Read(int id) {
+    public Sample Read(int id) {
         try {
-            String sql = "select * from categories where id=?";
+            String sql = "select * from sample where id=?";
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
-            Category data = GetByResultSet(rs);
+            Sample data = GetByResultSet(rs);
             rs.close();
             ps.close();
             return data;
@@ -53,26 +60,11 @@ public class CategoryDAO extends GeneralDAO<Category> implements ICategoryDAO {
     }
 
     @Override
-    public boolean Create(Category entity) {
+    public boolean Create(Sample entity) {
         try {
-            String sql = "insert into categories (name) values (?) ";
+            String sql = "insert into sample (title) values (?) ";
             PreparedStatement ps = connection.prepareStatement(sql);
-            ps.setString(1, entity.getName());
-            int rowsAffected = ps.executeUpdate();
-            return rowsAffected > 0;
-        } catch (Exception a) {
-            System.err.println(a.getMessage());
-            return false;
-        }
-    }
-
-    @Override
-    public boolean Update(Category entity) {
-        try {
-            String sql = "update categories set name=? where id=?";
-            PreparedStatement ps = connection.prepareStatement(sql);
-            ps.setString(1, entity.getName());
-            ps.setInt(2, entity.getId());
+            ps.setString(1, entity.getTitle());
             int rowsAffected = ps.executeUpdate();
             return rowsAffected > 0;
         } catch (Exception a) {
@@ -84,7 +76,7 @@ public class CategoryDAO extends GeneralDAO<Category> implements ICategoryDAO {
     @Override
     public boolean Delete(int id) {
         try {
-            String sql = "delete from categories where id=?";
+            String sql = "delete from sample where id=?";
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setInt(1, id);
             int rowsAffected = ps.executeUpdate();
@@ -96,13 +88,28 @@ public class CategoryDAO extends GeneralDAO<Category> implements ICategoryDAO {
     }
 
     @Override
-    public Category GetByName(String name) {
+    public boolean Update(Sample entity) {
         try {
-            String sql = "select * from categories where name = ?";
+            String sql = "update sample set title=? where id=?";
             PreparedStatement ps = connection.prepareStatement(sql);
-            ps.setString(1, name);
+            ps.setString(1, entity.getTitle());
+            ps.setInt(2, entity.getId());
+            int rowsAffected = ps.executeUpdate();
+            return rowsAffected > 0;
+        } catch (Exception a) {
+            System.err.println(a.getMessage());
+            return false;
+        }
+    }
+
+    @Override
+    public Sample ReadByTitle(String title) {
+        try {
+            String sql = "select * from sample where title=?";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setString(1, title);
             ResultSet rs = ps.executeQuery();
-            Category data = GetByResultSet(rs);
+            Sample data = GetByResultSet(rs);
             rs.close();
             ps.close();
             return data;
@@ -110,9 +117,5 @@ public class CategoryDAO extends GeneralDAO<Category> implements ICategoryDAO {
             System.err.println(a.getMessage());
             return null;
         }
-    }
-
-    public static void main(String[] args) {
-        System.out.println(new CategoryDAO().All());
     }
 }

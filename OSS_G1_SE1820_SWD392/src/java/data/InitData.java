@@ -1,9 +1,9 @@
 package data;
 
-import Type.Enum.GeneralStatus;
-import model.Category;
-import services.Implementations.CategoryDAO;
-import services.Interfaces.ICategoryDAO;
+import model.Enum.GeneralStatus;
+import Model.Entity.Category;
+import DAL.Implements.CategoryDAO;
+import DAL.Interfaces.ICategoryDAO;
 
 public class InitData {
 
