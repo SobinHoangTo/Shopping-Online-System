@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-package controller.Clients;
+package controllers.Clients;
 
 import java.io.IOException;
 import jakarta.servlet.ServletException;
@@ -10,8 +10,8 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import services.Implementations.SampleDAO;
-import services.Interfaces.ISampleDAO;
+import DAL.Implements.SampleDAO;
+import DAL.Interfaces.ISampleDAO;
 
 /**
  *
