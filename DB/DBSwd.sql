@@ -96,14 +96,14 @@ CREATE TABLE [orderDetails] (
 )
 GO
 
-ALTER TABLE [order] ADD FOREIGN KEY ([userId]) REFERENCES [users] ([id])
+ALTER TABLE [orders] ADD FOREIGN KEY ([userId]) REFERENCES [users] ([id])
 GO
 
-ALTER TABLE [product] ADD FOREIGN KEY ([categoryId]) REFERENCES [category] ([id])
+ALTER TABLE [products] ADD FOREIGN KEY ([categoryId]) REFERENCES [categories] ([id])
 GO
 
-ALTER TABLE [orderDetail] ADD FOREIGN KEY ([orderId]) REFERENCES [order] ([id])
+ALTER TABLE [orderDetails] ADD FOREIGN KEY ([orderId]) REFERENCES [orders] ([id])
 GO
 
-ALTER TABLE [orderDetail] ADD FOREIGN KEY ([orderId]) REFERENCES [product] ([id])
+ALTER TABLE [orderDetails] ADD FOREIGN KEY ([orderId]) REFERENCES [products] ([id])
 GO
