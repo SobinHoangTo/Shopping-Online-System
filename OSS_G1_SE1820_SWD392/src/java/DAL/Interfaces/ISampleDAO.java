@@ -2,9 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package services.Interfaces;
+package DAL.Interfaces;
 
-import model.Sample;
+import models.Entities.Sample;
 
 /**
  *

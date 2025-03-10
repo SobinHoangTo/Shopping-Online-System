@@ -1,11 +1,11 @@
-package services.Implementations;
+package DAL.Implements;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.PreparedStatement;
 import java.util.ArrayList;
-import model.Category;
-import services.Interfaces.ICategoryDAO;
+import models.Entities.Category;
+import DAL.Interfaces.ICategoryDAO;
 
 public class CategoryDAO extends GeneralDAO<Category> implements ICategoryDAO {
 
