@@ -1,4 +1,4 @@
-package DTO;
+package models.DTOs;
 
 public class UserDTO {
 

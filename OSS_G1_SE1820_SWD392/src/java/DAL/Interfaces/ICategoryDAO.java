@@ -1,6 +1,6 @@
 package DAL.Interfaces;
 
-import Model.Entity.Category;
+import models.Entities.Category;
 
 public interface ICategoryDAO extends IDAO<Category> {
 

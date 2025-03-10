@@ -4,7 +4,7 @@
  */
 package DAL.Interfaces;
 
-import Model.Entity.Sample;
+import models.Entities.Sample;
 
 /**
  *

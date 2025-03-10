@@ -1,7 +1,7 @@
 package data;
 
-import model.Enum.GeneralStatus;
-import Model.Entity.Category;
+import models.Enums.GeneralStatus;
+import models.Entities.Category;
 import DAL.Implements.CategoryDAO;
 import DAL.Interfaces.ICategoryDAO;
 
