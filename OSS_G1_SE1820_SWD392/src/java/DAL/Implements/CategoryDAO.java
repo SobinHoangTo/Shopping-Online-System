@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.util.ArrayList;
 import models.Entities.Category;
 import DAL.Interfaces.ICategoryDAO;
+import models.Enums.GeneralStatus;
 
 public class CategoryDAO extends GeneralDAO<Category> implements ICategoryDAO {
 
@@ -55,9 +56,10 @@ public class CategoryDAO extends GeneralDAO<Category> implements ICategoryDAO {
     @Override
     public boolean Create(Category entity) {
         try {
-            String sql = "insert into categories (name) values (?) ";
+            String sql = "insert into categories (name, status) values (?, ?)";
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setString(1, entity.getName());
+            ps.setString(2, GeneralStatus.ACTIVE);
             int rowsAffected = ps.executeUpdate();
             return rowsAffected > 0;
         } catch (Exception a) {
@@ -84,9 +86,10 @@ public class CategoryDAO extends GeneralDAO<Category> implements ICategoryDAO {
     @Override
     public boolean Delete(int id) {
         try {
-            String sql = "delete from categories where id=?";
+            String sql = "update from categories set status=? where id=?";
             PreparedStatement ps = connection.prepareStatement(sql);
-            ps.setInt(1, id);
+            ps.setString(1, GeneralStatus.INACTIVE);
+            ps.setInt(2, id);
             int rowsAffected = ps.executeUpdate();
             return rowsAffected > 0;
         } catch (Exception a) {
@@ -98,7 +101,7 @@ public class CategoryDAO extends GeneralDAO<Category> implements ICategoryDAO {
     @Override
     public Category GetByName(String name) {
         try {
-            String sql = "select * from categories where name = ?";
+            String sql = "select * from categories where name=?";
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setString(1, name);
             ResultSet rs = ps.executeQuery();
@@ -110,9 +113,5 @@ public class CategoryDAO extends GeneralDAO<Category> implements ICategoryDAO {
             System.err.println(a.getMessage());
             return null;
         }
-    }
-
-    public static void main(String[] args) {
-        System.out.println(new CategoryDAO().All());
     }
 }
