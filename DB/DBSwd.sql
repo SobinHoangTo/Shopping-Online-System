@@ -78,7 +78,7 @@ GO
 
 CREATE TABLE [orders] (
   [id] integer identity(1,1) PRIMARY KEY,
-  [userId] integer,
+  [userId] integer Null,
   [address] nvarchar(255),
   [paymentMethod] nvarchar(255),
   [paymentStatus] nvarchar(255),
@@ -107,3 +107,5 @@ GO
 
 ALTER TABLE [orderDetails] ADD FOREIGN KEY ([orderId]) REFERENCES [products] ([id])
 GO
+
+select * from products where name like '%%' and status='active' order by id  offset 0 rows fetch next 10 rows only

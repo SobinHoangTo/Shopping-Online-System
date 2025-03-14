@@ -23,40 +23,12 @@ public class SampleDAO extends GeneralDAO<Sample> implements ISampleDAO {
                 rs.getString("title"));
     }
 
-    @Override
     public ArrayList<Sample> All() {
-        try {
-            ArrayList<Sample> list = new ArrayList<>();
-            String sql = "select * from sample";
-            PreparedStatement ps = connection.prepareStatement(sql);
-            ResultSet rs = ps.executeQuery();
-            while (rs.next()) {
-                list.add(GetByResultSet(rs));
-            }
-            rs.close();
-            ps.close();
-            return list;
-        } catch (Exception a) {
-            System.err.println(a.getMessage());
-            return new ArrayList<>();
-        }
+        return super.All("sample");
     }
 
-    @Override
     public Sample Read(int id) {
-        try {
-            String sql = "select * from sample where id=?";
-            PreparedStatement ps = connection.prepareStatement(sql);
-            ps.setInt(1, id);
-            ResultSet rs = ps.executeQuery();
-            Sample data = GetByResultSet(rs);
-            rs.close();
-            ps.close();
-            return data;
-        } catch (Exception a) {
-            System.err.println(a.getMessage());
-            return null;
-        }
+        return super.Read("sample", id);
     }
 
     @Override

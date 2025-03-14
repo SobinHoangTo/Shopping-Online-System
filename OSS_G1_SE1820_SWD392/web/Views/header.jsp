@@ -69,8 +69,8 @@
                 aria-expanded="false"
                 >
                 <span class="flaticon-shopping-bag"></span>
-                <div class="d-flex justify-content-center align-items-center">
-                    <small>3</small>
+                <div id="cartLength" class="d-flex justify-content-center align-items-center">
+                    <small>0</small>
                 </div>
             </a>
 
@@ -79,7 +79,7 @@
                     <div class="dropdown-item d-flex align-items-start" href="#">
                         <div
                             class="img"
-                            style="background-image: url(../Images/prod-1.jpg)"
+                            style="background-image: url(<%=request.getContextPath()%>/Images/prod-1.jpg)"
                             ></div>
                         <div class="text pl-3">
                             <h4>Bacardi 151</h4>
@@ -114,33 +114,17 @@
 
         <div class="collapse navbar-collapse" id="ftco-nav">
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item active">
+                <li class="nav-item">
                     <a href="index.html" class="nav-link">Home</a>
                 </li>
                 <li class="nav-item">
                     <a href="about.html" class="nav-link">About</a>
                 </li>
-                <li class="nav-item dropdown">
-                    <a
-                        class="nav-link dropdown-toggle"
-                        href="#"
-                        id="dropdown04"
-                        data-toggle="dropdown"
-                        aria-haspopup="true"
-                        aria-expanded="false"
-                        >Products</a
-                    >
-                    <div class="dropdown-menu" aria-labelledby="dropdown04">
-                        <a class="dropdown-item" href="product.html">Products</a>
-                        <a class="dropdown-item" href="product-single.html"
-                           >Single Product</a
-                        >
-                        <a class="dropdown-item" href="cart.html">Cart</a>
-                        <a class="dropdown-item" href="preorder.html">Pre-Order</a>
-                    </div>
+                <li class="nav-item">
+                    <a href="products" class="nav-link">Products</a>
                 </li>
                 <li class="nav-item">
-                    <a href="preorder.html" class="nav-link">Pre-Order</a>
+                    <a href="preorder.html" class="nav-link">Your Orders</a>
                 </li>
             </ul>
         </div>

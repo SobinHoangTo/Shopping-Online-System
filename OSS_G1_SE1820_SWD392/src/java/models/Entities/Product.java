@@ -1,6 +1,7 @@
 package models.Entities;
 
 public class Product {
+
     private int id;
     private String name;
     private double price;
@@ -11,6 +12,15 @@ public class Product {
 
     public Product(int id, String name, double price, String description, String image, String status, int categoryId) {
         this.id = id;
+        this.name = name;
+        this.price = price;
+        this.description = description;
+        this.image = image;
+        this.status = status;
+        this.categoryId = categoryId;
+    }
+
+    public Product(String name, double price, String description, String image, String status, int categoryId) {
         this.name = name;
         this.price = price;
         this.description = description;
@@ -83,5 +93,4 @@ public class Product {
         return "Product{" + "id=" + id + ", name=" + name + ", price=" + price + ", description=" + description + ", image=" + image + ", status=" + status + ", categoryId=" + categoryId + '}';
     }
 
-    
 }

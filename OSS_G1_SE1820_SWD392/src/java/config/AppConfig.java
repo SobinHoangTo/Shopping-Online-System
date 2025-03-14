@@ -11,7 +11,7 @@ package config;
 public class AppConfig {
 
     public static final String DB_USER = "sa";
-    public static final String DB_PASS = "123";
+    public static final String DB_PASS = "Vinh123?";
     public static final String DB_NAME = "SWD392_SE1820_SP25_G1";
     public static final String DB_URL = "jdbc:sqlserver://localhost:1433;databaseName=" + DB_NAME;
 }
