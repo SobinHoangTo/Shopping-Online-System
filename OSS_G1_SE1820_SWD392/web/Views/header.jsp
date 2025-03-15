@@ -59,43 +59,17 @@
     id="ftco-navbar"
     >
     <div class="container">
-        <a class="navbar-brand" href="index.html">Liquor <span>store</span></a>
+        <a class="navbar-brand" href="index.html">OSS <span>Group1</span></a>
         <div class="order-lg-last btn-group">
             <a
-                href="#"
+                href="<%=request.getContextPath()%>/cart"
                 class="btn-cart dropdown-toggle dropdown-toggle-split"
-                data-toggle="dropdown"
                 aria-haspopup="true"
                 aria-expanded="false"
                 >
                 <span class="flaticon-shopping-bag"></span>
-                <div class="d-flex justify-content-center align-items-center">
-                    <small>3</small>
-                </div>
-            </a>
-
-            <a href="product-single.html">
-                <div class="dropdown-menu dropdown-menu-right">
-                    <div class="dropdown-item d-flex align-items-start" href="#">
-                        <div
-                            class="img"
-                            style="background-image: url(../Images/prod-1.jpg)"
-                            ></div>
-                        <div class="text pl-3">
-                            <h4>Bacardi 151</h4>
-                            <p class="mb-0">
-                                <a href="#" class="price">$25.99</a>
-                                <span class="quantity ml-3">Quantity: 01</span>
-                            </p>
-                        </div>
-                    </div>
-                    <a
-                        class="dropdown-item text-center btn-link d-block w-100"
-                        href="cart.html"
-                        >
-                        View All
-                        <span class="ion-ios-arrow-round-forward"></span>
-                    </a>
+                <div id="cartLength" class="d-flex justify-content-center align-items-center">
+                    <small>0</small>
                 </div>
             </a>
         </div>
@@ -114,33 +88,17 @@
 
         <div class="collapse navbar-collapse" id="ftco-nav">
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item active">
+                <li class="nav-item">
                     <a href="index.html" class="nav-link">Home</a>
                 </li>
                 <li class="nav-item">
                     <a href="about.html" class="nav-link">About</a>
                 </li>
-                <li class="nav-item dropdown">
-                    <a
-                        class="nav-link dropdown-toggle"
-                        href="#"
-                        id="dropdown04"
-                        data-toggle="dropdown"
-                        aria-haspopup="true"
-                        aria-expanded="false"
-                        >Products</a
-                    >
-                    <div class="dropdown-menu" aria-labelledby="dropdown04">
-                        <a class="dropdown-item" href="product.html">Products</a>
-                        <a class="dropdown-item" href="product-single.html"
-                           >Single Product</a
-                        >
-                        <a class="dropdown-item" href="cart.html">Cart</a>
-                        <a class="dropdown-item" href="preorder.html">Pre-Order</a>
-                    </div>
+                <li class="nav-item">
+                    <a href="products" class="nav-link">Products</a>
                 </li>
                 <li class="nav-item">
-                    <a href="preorder.html" class="nav-link">Pre-Order</a>
+                    <a href="preorder.html" class="nav-link">Your Orders</a>
                 </li>
             </ul>
         </div>

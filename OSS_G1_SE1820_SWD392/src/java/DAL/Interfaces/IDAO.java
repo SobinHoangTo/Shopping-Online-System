@@ -16,9 +16,9 @@ public interface IDAO<T> {
 
     T GetByResultSet(ResultSet rs) throws SQLException;
 
-    ArrayList<T> All();
+    ArrayList<T> All(String tableName);
 
-    T Read(int id);
+    T Read(String tableName, int id);
 
     boolean Create(T entity);
 

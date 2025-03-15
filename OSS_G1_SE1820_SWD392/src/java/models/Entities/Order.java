@@ -3,7 +3,7 @@ package models.Entities;
 public class Order {
 
     private int id;
-    private int userId;
+    private Integer userId;
     private String address;
     private String paymentMethod;
     private String paymentStatus;
@@ -11,9 +11,23 @@ public class Order {
     private String status;
     private double amount;
 
-    public Order(int id, int userId, String address, String paymentMethod, String paymentStatus, String shippingStatus, String status, double amount) {
+    public Order(int id, Integer userId, String address, String paymentMethod, String paymentStatus, String shippingStatus, String status, double amount) {
         this.id = id;
-        this.userId = userId;
+        if (userId != null) {
+            this.userId = userId;
+        }
+        this.address = address;
+        this.paymentMethod = paymentMethod;
+        this.paymentStatus = paymentStatus;
+        this.shippingStatus = shippingStatus;
+        this.status = status;
+        this.amount = amount;
+    }
+    
+    public Order(Integer userId, String address, String paymentMethod, String paymentStatus, String shippingStatus, String status, double amount) {
+        if (userId != null) {
+            this.userId = userId;
+        }
         this.address = address;
         this.paymentMethod = paymentMethod;
         this.paymentStatus = paymentStatus;
@@ -33,7 +47,7 @@ public class Order {
         this.id = id;
     }
 
-    public int getUserId() {
+    public Integer getUserId() {
         return userId;
     }
 

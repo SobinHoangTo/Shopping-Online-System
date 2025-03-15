@@ -78,7 +78,7 @@ GO
 
 CREATE TABLE [orders] (
   [id] integer identity(1,1) PRIMARY KEY,
-  [userId] integer,
+  [userId] integer Null,
   [address] nvarchar(255),
   [paymentMethod] nvarchar(255),
   [paymentStatus] nvarchar(255),
