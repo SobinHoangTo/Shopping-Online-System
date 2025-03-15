@@ -8,7 +8,6 @@ import DAL.Interfaces.IDAO;
 import data.DBContext;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
@@ -39,18 +38,22 @@ public abstract class GeneralDAO<T> extends DBContext implements IDAO<T> {
     @Override
     public T Read(String tableName, int id) {
         try {
-            String sql = "select * from " + tableName + "  where id=?";
+            String sql = "select * from " + tableName + " where id=?";
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
-            T data = GetByResultSet(rs);
+            if (rs.next()) {
+                T data = GetByResultSet(rs);
+                rs.close();
+                ps.close();
+                return data;
+            }
             rs.close();
             ps.close();
-            return data;
         } catch (Exception a) {
             System.err.println(a.getMessage());
-            return null;
         }
+        return null;
     }
 
 }

@@ -107,5 +107,3 @@ GO
 
 ALTER TABLE [orderDetails] ADD FOREIGN KEY ([orderId]) REFERENCES [products] ([id])
 GO
-
-select * from products where name like '%%' and status='active' order by id  offset 0 rows fetch next 10 rows only
