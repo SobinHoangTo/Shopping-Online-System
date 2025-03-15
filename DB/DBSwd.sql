@@ -80,10 +80,13 @@ CREATE TABLE [orders] (
   [id] integer identity(1,1) PRIMARY KEY,
   [userId] integer Null,
   [address] nvarchar(255),
+  [phone] varchar(15),
+  [name] nvarchar(225),
   [paymentMethod] nvarchar(255),
   [paymentStatus] nvarchar(255),
   [shippingStatus] nvarchar(255),
   [status] nvarchar(225) Null,
+  [trackingNumber] varchar(50),
   [amount] float
 )
 GO
