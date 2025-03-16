@@ -9,6 +9,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import java.util.Arrays;
 import models.Entities.Order;
 import models.Enums.GeneralStatus;
@@ -34,8 +35,6 @@ public class OrderServlet extends HttpServlet {
         String address = request.getParameter("address");
         String totalPrice = request.getParameter("totalPrice");
         String paymentMethod = request.getParameter("paymentMethod");
-        String orderId = request.getParameter("id");
-        String amount = request.getParameter("amount");
 
         String[] productIdsString = request.getParameterValues("productIds");
         int[] productIds = Arrays.stream(productIdsString)
@@ -55,13 +54,17 @@ public class OrderServlet extends HttpServlet {
                     response.sendRedirect("home");
                     return;
                 case PaymentMethod.ONLINE_PAYMENT:
-                    request.setAttribute("orderId", orderId);
-                    request.setAttribute("amount", amount);
+                    HttpSession session = request.getSession();
+                    session.setAttribute("newOrder", newOrder);
+                    session.setAttribute("productIds", productIds);
+                    session.setAttribute("cartItemsJson", cartItemsJson);
+                    session.setAttribute("district", district);
+                    session.setAttribute("ward", ward);
+                    request.setAttribute("totalPrice", totalPrice);
                     request.getRequestDispatcher("/vnpay").forward(request, response);
                     break;
                 case PaymentMethod.BANK_TRANSFER:
-                    request.setAttribute("orderId", orderId);
-                    request.setAttribute("amount", amount);
+                    request.setAttribute("totalPrice", totalPrice);
                     request.getRequestDispatcher("/payos").forward(request, response);
                     break;
                 default:

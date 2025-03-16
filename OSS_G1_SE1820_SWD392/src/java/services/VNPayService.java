@@ -27,62 +27,6 @@ import javax.crypto.spec.SecretKeySpec;
  * @author asus
  */
 public class VNPayService {
-    
-        public static String buildPaymentUrl(String amount, String bankCode, String language, HttpServletRequest req) throws Exception {
-        int vnpAmount = (int) (Double.parseDouble(amount) * 100);
-        String vnp_TxnRef = getRandomNumber(8);
-        String vnp_IpAddr = getIpAddress(req);
-
-        Map<String, String> vnp_Params = new HashMap<>();
-        vnp_Params.put("vnp_Version", "2.1.0");
-        vnp_Params.put("vnp_Command", "pay");
-        vnp_Params.put("vnp_TmnCode", VNPayConfig.VNP_TMN_CODE);
-        vnp_Params.put("vnp_Amount", String.valueOf(vnpAmount));
-        vnp_Params.put("vnp_CurrCode", "VND");
-
-        if (bankCode != null && !bankCode.isEmpty()) {
-            vnp_Params.put("vnp_BankCode", bankCode);
-        }
-
-        vnp_Params.put("vnp_TxnRef", vnp_TxnRef);
-        vnp_Params.put("vnp_OrderInfo", "Thanh toan don hang:" + vnp_TxnRef);
-        vnp_Params.put("vnp_OrderType", "other");
-        vnp_Params.put("vnp_Locale", (language != null && !language.isEmpty()) ? language : "vn");
-        vnp_Params.put("vnp_ReturnUrl", VNPayConfig.VNP_RETURN_URL);
-        vnp_Params.put("vnp_IpAddr", vnp_IpAddr);
-
-        Calendar cld = Calendar.getInstance(TimeZone.getTimeZone("Etc/GMT+7"));
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMddHHmmss");
-        String vnp_CreateDate = formatter.format(cld.getTime());
-        vnp_Params.put("vnp_CreateDate", vnp_CreateDate);
-
-        cld.add(Calendar.MINUTE, 15);
-        String vnp_ExpireDate = formatter.format(cld.getTime());
-        vnp_Params.put("vnp_ExpireDate", vnp_ExpireDate);
-
-        List<String> fieldNames = new ArrayList<>(vnp_Params.keySet());
-        Collections.sort(fieldNames);
-
-        StringBuilder hashData = new StringBuilder();
-        StringBuilder query = new StringBuilder();
-
-        for (String fieldName : fieldNames) {
-            String fieldValue = vnp_Params.get(fieldName);
-            if (fieldValue != null && !fieldValue.isEmpty()) {
-                hashData.append(fieldName).append("=").append(URLEncoder.encode(fieldValue, StandardCharsets.UTF_8.toString()));
-                query.append(URLEncoder.encode(fieldName, StandardCharsets.UTF_8.toString())).append("=").append(URLEncoder.encode(fieldValue, StandardCharsets.UTF_8.toString()));
-                if (!fieldName.equals(fieldNames.get(fieldNames.size() - 1))) {
-                    hashData.append("&");
-                    query.append("&");
-                }
-            }
-        }
-
-        String vnp_SecureHash = hmacSHA512(VNPayConfig.SECRET_KEY, hashData.toString());
-        query.append("&vnp_SecureHash=").append(vnp_SecureHash);
-
-        return VNPayConfig.VNP_PAY_URL + "?" + query;
-    }
 
     // Mã hóa MD5
     public static String md5(String message) {
