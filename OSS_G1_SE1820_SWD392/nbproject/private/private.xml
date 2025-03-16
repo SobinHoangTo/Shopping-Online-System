@@ -3,7 +3,23 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/Semester8th/SWD392/Project/oss/OSS_G1_SE1820_SWD392/src/java/models/Entities/Category.java</file>
+            <file>file:/D:/Semester8th/SWD392/Project/oss/OSS_G1_SE1820_SWD392/src/java/DAL/Interfaces/IDAO.java</file>
+            <file>file:/D:/Semester8th/SWD392/Project/oss/OSS_G1_SE1820_SWD392/src/java/DAL/Implements/SampleDAO.java</file>
+            <file>file:/D:/Semester8th/SWD392/Project/oss/OSS_G1_SE1820_SWD392/src/java/data/DBContext.java</file>
+            <file>file:/D:/Semester8th/SWD392/Project/oss/OSS_G1_SE1820_SWD392/src/java/controllers/Clients/Admin/ListProductServlet.java</file>
+            <file>file:/D:/Semester8th/SWD392/Project/oss/OSS_G1_SE1820_SWD392/src/java/DAL/Interfaces/ISampleDAO.java</file>
+            <file>file:/D:/Semester8th/SWD392/Project/oss/OSS_G1_SE1820_SWD392/web/Views/Admin/success.jsp</file>
+            <file>file:/D:/Semester8th/SWD392/Project/oss/OSS_G1_SE1820_SWD392/src/java/DAL/Implements/ProductDAO.java</file>
+            <file>file:/D:/Semester8th/SWD392/Project/oss/OSS_G1_SE1820_SWD392/src/java/DAL/Interfaces/IProductDAO.java</file>
+            <file>file:/D:/Semester8th/SWD392/Project/oss/OSS_G1_SE1820_SWD392/src/java/DAL/Interfaces/ICategoryDAO.java</file>
+            <file>file:/D:/Semester8th/SWD392/Project/oss/OSS_G1_SE1820_SWD392/src/java/config/CloudinaryConfig.java</file>
+            <file>file:/D:/Semester8th/SWD392/Project/oss/OSS_G1_SE1820_SWD392/src/java/config/AppConfig.java</file>
+            <file>file:/D:/Semester8th/SWD392/Project/oss/OSS_G1_SE1820_SWD392/web/WEB-INF/web.xml</file>
+            <file>file:/D:/Semester8th/SWD392/Project/oss/OSS_G1_SE1820_SWD392/src/java/controllers/Clients/Admin/ProductServlet.java</file>
+            <file>file:/D:/Semester8th/SWD392/Project/oss/OSS_G1_SE1820_SWD392/src/java/DAL/Implements/CategoryDAO.java</file>
+            <file>file:/D:/Semester8th/SWD392/Project/oss/OSS_G1_SE1820_SWD392/web/Views/Admin/error.jsp</file>
+            <file>file:/D:/Semester8th/SWD392/Project/oss/OSS_G1_SE1820_SWD392/src/java/DAL/Implements/GeneralDAO.java</file>
+            <file>file:/D:/Semester8th/SWD392/Project/oss/OSS_G1_SE1820_SWD392/web/Views/Admin/listproduct.jsp</file>
         </group>
     </open-files>
 </project-private>

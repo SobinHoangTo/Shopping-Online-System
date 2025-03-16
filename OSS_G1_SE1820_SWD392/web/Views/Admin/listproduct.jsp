@@ -8,7 +8,13 @@
 <body>
     <h1>Product List</h1>
     
-    <!-- Hiển thị danh sách sản phẩm -->
+    
+    <!-- Add New Product Button -->
+    <form action="ProductServlet" method="get">
+        <button type="submit">Add New Product</button>
+    </form>
+    
+    
     <table border="1">
         <thead>
             <tr>
@@ -22,8 +28,7 @@
                 <th>Action</th>
             </tr>
         </thead>
-        <tbody>
-            <!-- Lặp qua từng sản phẩm trong danh sách -->
+        <tbody>          
             <c:forEach var="product" items="${productList}">
                 <tr>
                     <td>${product.id}</td>

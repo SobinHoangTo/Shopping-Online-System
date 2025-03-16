@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
 
-package controllers.Clients;
+package controllers.Clients.Admin;
 
 import DAL.Implements.ProductDAO;
 import java.io.IOException;
@@ -39,7 +39,7 @@ public class ListProductServlet extends HttpServlet {
         request.setAttribute("productList", productList);
         
         // Chuyển hướng đến listproduct.jsp
-        request.getRequestDispatcher("Views/listproduct.jsp").forward(request, response);
+        request.getRequestDispatcher("Views/Admin/listproduct.jsp").forward(request, response);
     }
 
     @Override

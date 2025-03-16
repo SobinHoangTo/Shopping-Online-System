@@ -1,4 +1,4 @@
-package controllers.Clients;
+package controllers.Clients.Admin;
 
 import DAL.Implements.CategoryDAO;
 import DAL.Implements.ProductDAO;
@@ -58,7 +58,7 @@ public class ProductServlet extends HttpServlet {
             // Đưa danh mục và sản phẩm vào request
             request.setAttribute("categories", categories);
             request.setAttribute("product", product);  // Nếu là thêm mới, product sẽ là null
-            request.getRequestDispatcher("/Views/product.jsp").forward(request, response);
+            request.getRequestDispatcher("/Views/Admin/product.jsp").forward(request, response);
 
         } catch (Exception e) {
             LOGGER.log(Level.SEVERE, "Error in doGet", e);
@@ -154,7 +154,7 @@ public class ProductServlet extends HttpServlet {
             CategoryDAO categoryDAO = new CategoryDAO();
             request.setAttribute("categories", categoryDAO.All());
             request.setAttribute("product", product);
-            request.getRequestDispatcher("/Views/product.jsp").forward(request, response);
+            request.getRequestDispatcher("/Views/Admin/product.jsp").forward(request, response);
 
         } catch (Exception e) {
             LOGGER.log(Level.SEVERE, "Error in doPost", e);
