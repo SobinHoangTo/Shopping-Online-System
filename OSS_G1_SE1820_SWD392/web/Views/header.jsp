@@ -3,7 +3,7 @@
     Created on : Mar 8, 2025, 1:12:12 AM
     Author     : vdqvi
 --%>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <div class="wrap">
     <div class="container">
         <div class="row">
@@ -46,7 +46,12 @@
                 </div>
                 <div class="reg">
                     <p class="mb-0">
-                        <a href="#" class="mr-2">Sign Up</a> <a href="#">Log In</a>
+                    <c:if test="${sessionScope.User == null}">
+                        <a class="navbar-brand" href="http://localhost:9999/OSS_G1_SE1820_SWD392/Views/login.jsp">LOG IN/SIGN UP</a>
+                    </c:if>
+                    <c:if test="${sessionScope.User != null}">
+                        <a class="navbar-brand" href="http://localhost:9999/OSS_G1_SE1820_SWD392/logout">LOG OUT</a>
+                    </c:if>
                     </p>
                 </div>
             </div>
