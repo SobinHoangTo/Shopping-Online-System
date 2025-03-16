@@ -3,6 +3,8 @@
     <welcome-file-list>
         <welcome-file>Views/home.jsp</welcome-file>
     </welcome-file-list>
+    
+    <!-- Servlet for Product -->
     <servlet>
         <servlet-name>ProductServlet</servlet-name>
         <servlet-class>controllers.Clients.ProductServlet</servlet-class>
@@ -10,5 +12,15 @@
     <servlet-mapping>
         <servlet-name>ProductServlet</servlet-name>
         <url-pattern>/ProductServlet</url-pattern>
+    </servlet-mapping>
+    
+    <!-- Servlet for ListProduct -->
+    <servlet>
+        <servlet-name>ListProductServlet</servlet-name>
+        <servlet-class>controllers.Clients.ListProductServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ListProductServlet</servlet-name>
+        <url-pattern>/ListProductServlet</url-pattern>
     </servlet-mapping>
 </web-app>
