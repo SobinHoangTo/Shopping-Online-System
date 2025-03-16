@@ -177,3 +177,41 @@
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
 <script src="<%=request.getContextPath()%>/Assets/js/google-map.js"></script>
 <script src="<%=request.getContextPath()%>/Assets/js/main.js"></script>
+
+<script>
+                            function displayCartLength() {
+                                let cartItems = getCookie("cartItems");
+                                if (cartItems) {
+                                    cartItems = JSON.parse(cartItems);
+                                } else {
+                                    cartItems = {};
+                                }
+                                let sum = 0;
+                                for (let key in cartItems) {
+                                    sum += cartItems[key];
+                                }
+                                document.getElementById("cartLength").innerHTML = "<small>" + sum + "</small>";
+                            }
+                            function setCookie(name, value, days) {
+                                let expires = "";
+                                if (days) {
+                                    let date = new Date();
+                                    date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
+                                    expires = "; expires=" + date.toUTCString();
+                                }
+                                document.cookie = name + "=" + encodeURIComponent(value) + expires + "; path=/";
+                            }
+
+                            function getCookie(name) {
+                                let nameEQ = name + "=";
+                                let cookiesArray = document.cookie.split(';');
+                                for (let i = 0; i < cookiesArray.length; i++) {
+                                    let cookie = cookiesArray[i].trim();
+                                    if (cookie.indexOf(nameEQ) === 0) {
+                                        return decodeURIComponent(cookie.substring(nameEQ.length));
+                                    }
+                                }
+                                return null;
+                            }
+                            displayCartLength();
+</script>

@@ -12,13 +12,13 @@ import jakarta.servlet.http.HttpServletResponse;
 import models.DTOs.DataPublics;
 import models.DTOs.GeneralQueryParam;
 import models.Enums.GeneralStatus;
-import services.utils.ProductServices;
+import services.ProductServices;
 
 /**
  *
  * @author vdqvi
  */
-public class ProductList extends HttpServlet {
+public class ProductListServlet extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
