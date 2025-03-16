@@ -9,32 +9,60 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.util.ArrayList;
+import java.util.Arrays;
+import models.Entities.Order;
+import models.Enums.GeneralStatus;
+import models.Enums.PaymentMethod;
+import models.Enums.PaymentStatus;
+import models.Enums.ShippingStatus;
 import org.json.JSONObject;
 import services.CartService;
-import services.ProductServices;
+import services.OrderServices;
 
 /**
  *
  * @author vdqvi
  */
-public class CartServlet extends HttpServlet {
+public class OrderServlet extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        ProductServices productService = new ProductServices();
+        String name = request.getParameter("name");
+        String phone = request.getParameter("phone");
+        String district = request.getParameter("district");
+        String ward = request.getParameter("ward");
+        String address = request.getParameter("address");
+        String totalPrice = request.getParameter("totalPrice");
+        String paymentMethod = request.getParameter("paymentMethod");
+
+        String[] productIdsString = request.getParameterValues("productIds");
+        int[] productIds = Arrays.stream(productIdsString)
+                .mapToInt(Integer::parseInt)
+                .toArray();
 
         CartService cartService = new CartService();
         JSONObject cartItemsJson = cartService.getCartItemsFromCookies(request.getCookies());
-        request.setAttribute("cartItems", cartItemsJson);
 
-        int[] ids = new int[0];
+        Order newOrder = new Order(null, address, phone, name, paymentMethod, PaymentStatus.UNPAID, ShippingStatus.PICKING, GeneralStatus.ACTIVE, null, (int) Double.parseDouble(totalPrice));
 
-        ArrayList<Integer> idList = cartService.getIdListFromCartItems(cartItemsJson);
-        ids = idList.stream().mapToInt(Integer::intValue).toArray();
+        try {
+            switch (paymentMethod) {
+                case PaymentMethod.COD:
+                    OrderServices orderServices = new OrderServices();
+                    orderServices.CreateOrderWithGHN(newOrder, productIds, cartItemsJson, district, ward);
+                    response.sendRedirect("home");
+                    return;
+                case PaymentMethod.ONLINE_PAYMENT:
+                    break;
+                case PaymentMethod.BANK_TRANSFER:
+                    break;
+                default:
+                    throw new AssertionError();
+            }
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
 
-        request.setAttribute("products", productService.GetAllByIds(ids));
-        request.getRequestDispatcher("Views/cart.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

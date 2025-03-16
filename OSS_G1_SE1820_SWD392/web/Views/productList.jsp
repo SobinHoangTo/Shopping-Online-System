@@ -56,7 +56,7 @@
                     <div class="col-md-9 ftco-animate mb-5 text-center">
                         <p class="breadcrumbs mb-0">
                             <span class="mr-2"
-                                  ><a href="index.html"
+                                  ><a href="<%=request.getContextPath()%>/home"
                                 >Home <i class="fa fa-chevron-right"></i></a
                                 ></span>
                             <span>Products <i class="fa fa-chevron-right"></i></span>
@@ -112,7 +112,7 @@
                                             <span class="category">${product.getDescription()}</span>
                                             <p class="mb-0">
                                                 <!--<span class="price price-sale">$69.00</span>-->
-                                                <span class="price">${product.getPrice()}VNĐ</span>
+                                                <span class="price">${product.getPrice()} VNĐ</span>
                                             </p>
                                         </div>
                                     </div>
@@ -208,8 +208,6 @@
 
             const totalCount = ${count};
             const currentPage = ${param.pageIndex != null ? param.pageIndex : 1};
-            console.log("count", totalCount);
-            console.log("currentPage", typeof (currentPage));
             const pageSize = parseInt(document.getElementById("pageSize").value) || 10;
             const totalPages = Math.ceil(totalCount / pageSize);
 
