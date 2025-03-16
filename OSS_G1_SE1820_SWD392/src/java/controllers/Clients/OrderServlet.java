@@ -34,6 +34,8 @@ public class OrderServlet extends HttpServlet {
         String address = request.getParameter("address");
         String totalPrice = request.getParameter("totalPrice");
         String paymentMethod = request.getParameter("paymentMethod");
+        String orderId = request.getParameter("id");
+        String amount = request.getParameter("amount");
 
         String[] productIdsString = request.getParameterValues("productIds");
         int[] productIds = Arrays.stream(productIdsString)
@@ -53,8 +55,14 @@ public class OrderServlet extends HttpServlet {
                     response.sendRedirect("home");
                     return;
                 case PaymentMethod.ONLINE_PAYMENT:
+                    request.setAttribute("orderId", orderId);
+                    request.setAttribute("amount", amount);
+                    request.getRequestDispatcher("/vnpay").forward(request, response);
                     break;
                 case PaymentMethod.BANK_TRANSFER:
+                    request.setAttribute("orderId", orderId);
+                    request.setAttribute("amount", amount);
+                    request.getRequestDispatcher("/payos").forward(request, response);
                     break;
                 default:
                     throw new AssertionError();
