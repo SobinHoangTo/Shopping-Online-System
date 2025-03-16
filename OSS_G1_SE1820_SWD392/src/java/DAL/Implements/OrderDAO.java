@@ -3,11 +3,12 @@ package DAL.Implements;
 import DAL.Interfaces.IOrderDAO;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Types;
+import java.sql.Statement;
 import java.util.ArrayList;
 import models.Entities.Order;
 import java.sql.PreparedStatement;
 import models.Enums.GeneralStatus;
-import models.Enums.ShippingStatus;
 import models.Enums.TableNames;
 
 public class OrderDAO extends GeneralDAO<Order> implements IOrderDAO {
@@ -50,7 +51,11 @@ public class OrderDAO extends GeneralDAO<Order> implements IOrderDAO {
                     + "           ,[trackingNumber]\n"
                     + "           ,[amount]) values(?,?,?,?,?,?,?,?,?,?)";
             PreparedStatement ps = connection.prepareStatement(sql);
-            ps.setInt(1, entity.getUserId());
+            if (entity.getUserId() == null) {
+                ps.setNull(1, Types.INTEGER);
+            } else {
+                ps.setInt(1, entity.getUserId());
+            }
             ps.setString(2, entity.getAddress());
             ps.setString(3, entity.getPhone());
             ps.setString(4, entity.getName());
@@ -84,7 +89,11 @@ public class OrderDAO extends GeneralDAO<Order> implements IOrderDAO {
                     + "      ,[amount] = ?\n"
                     + "	WHERE id=?";
             PreparedStatement ps = connection.prepareStatement(sql);
-            ps.setInt(1, entity.getUserId());
+            if (entity.getUserId() == null) {
+                ps.setNull(1, entity.getUserId());
+            } else {
+                ps.setInt(1, entity.getUserId());
+            }
             ps.setString(2, entity.getAddress());
             ps.setString(3, entity.getPhone());
             ps.setString(4, entity.getName());
@@ -135,5 +144,52 @@ public class OrderDAO extends GeneralDAO<Order> implements IOrderDAO {
             System.err.println(a.getMessage());
             return new ArrayList<>();
         }
+    }
+
+    public Integer CreateReturnId(Order entity) {
+        try {
+            String sql = "INSERT INTO [dbo].[" + TableNames.ORDER + "]\n"
+                    + "           ([userId]\n"
+                    + "           ,[address]\n"
+                    + "           ,[phone]\n"
+                    + "           ,[name]\n"
+                    + "           ,[paymentMethod]\n"
+                    + "           ,[paymentStatus]\n"
+                    + "           ,[shippingStatus]\n"
+                    + "           ,[status]\n"
+                    + "           ,[trackingNumber]\n"
+                    + "           ,[amount]) values(?,?,?,?,?,?,?,?,?,?)";
+
+            PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+
+            if (entity.getUserId() == null) {
+                ps.setNull(1, Types.INTEGER);
+            } else {
+                ps.setInt(1, entity.getUserId());
+            }
+
+            ps.setString(2, entity.getAddress());
+            ps.setString(3, entity.getPhone());
+            ps.setString(4, entity.getName());
+            ps.setString(5, entity.getPaymentMethod());
+            ps.setString(6, entity.getPaymentStatus());
+            ps.setString(7, entity.getShippingStatus());
+            ps.setString(8, entity.getStatus());
+            ps.setString(9, entity.getTrackingNumber());
+            ps.setDouble(10, entity.getAmount());
+
+            int rowsAffected = ps.executeUpdate();
+
+            if (rowsAffected > 0) {
+                ResultSet rs = ps.getGeneratedKeys();
+                if (rs.next()) {
+                    return rs.getInt(1);
+                }
+            }
+        } catch (Exception a) {
+            System.err.println(a.getMessage());
+        }
+
+        return null;
     }
 }

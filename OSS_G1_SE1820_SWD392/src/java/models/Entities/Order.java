@@ -45,7 +45,7 @@ public class Order {
         this.trackingNumber = trackingNumber;
         this.amount = amount;
     }
-    
+
     public int getId() {
         return id;
     }

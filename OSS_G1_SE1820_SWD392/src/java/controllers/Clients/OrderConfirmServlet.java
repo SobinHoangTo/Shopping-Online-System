@@ -10,6 +10,8 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
+import java.util.Arrays;
+import models.Entities.Product;
 import org.json.JSONObject;
 import services.CartService;
 import services.ProductServices;
@@ -18,23 +20,34 @@ import services.ProductServices;
  *
  * @author vdqvi
  */
-public class CartServlet extends HttpServlet {
+public class OrderConfirmServlet extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        ProductServices productService = new ProductServices();
+        String[] productIds = request.getParameterValues("productIds");
+        if (productIds == null || productIds.length == 0) {
+            response.sendRedirect("home");
+            return;
+        }
+
+        int[] ids = Arrays.stream(productIds)
+                .mapToInt(Integer::parseInt)
+                .toArray();
 
         CartService cartService = new CartService();
         JSONObject cartItemsJson = cartService.getCartItemsFromCookies(request.getCookies());
-        request.setAttribute("cartItems", cartItemsJson);
 
-        int[] ids = new int[0];
+        ProductServices productServices = new ProductServices();
+        ArrayList<Product> products = productServices.GetAllByIds(ids);
 
-        ArrayList<Integer> idList = cartService.getIdListFromCartItems(cartItemsJson);
-        ids = idList.stream().mapToInt(Integer::intValue).toArray();
+        double totalPrice = 0;
+        for (Product product : products) {
+            totalPrice += cartItemsJson.getInt(product.getId() + "") * product.getPrice();
+        }
 
-        request.setAttribute("products", productService.GetAllByIds(ids));
-        request.getRequestDispatcher("Views/cart.jsp").forward(request, response);
+        request.setAttribute("totalPrice", totalPrice);
+        request.setAttribute("productIds", ids);
+        request.getRequestDispatcher("Views/orderConfirm.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

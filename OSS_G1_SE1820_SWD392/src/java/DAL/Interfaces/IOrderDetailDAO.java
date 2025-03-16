@@ -1,5 +1,7 @@
 package DAL.Interfaces;
 
-public interface IOrderDetailDAO {
-    
+import models.Entities.OrderDetail;
+
+public interface IOrderDetailDAO extends IDAO<OrderDetail> {
+
 }

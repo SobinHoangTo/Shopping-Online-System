@@ -108,5 +108,5 @@ GO
 ALTER TABLE [orderDetails] ADD FOREIGN KEY ([orderId]) REFERENCES [orders] ([id])
 GO
 
-ALTER TABLE [orderDetails] ADD FOREIGN KEY ([orderId]) REFERENCES [products] ([id])
+ALTER TABLE [orderDetails] ADD FOREIGN KEY ([productId]) REFERENCES [products] ([id])
 GO

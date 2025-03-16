@@ -103,7 +103,7 @@
                                 >
                             </p>
                         </div>
-                        <p class="price"><span>$${product.getPrice()}</span></p>
+                        <p class="price"><span>${product.getPrice()} VNĐ</span></p>
                         <p>
                             ${product.getDescription()}
                         </p>
@@ -308,7 +308,7 @@
         <script>
             function addToCart() {
                 let quantity = document.getElementById("quantity").value;
-                let cartItems = localStorage.getItem("cartItems");
+                let cartItems = getCookie("cartItems");
                 let productId = ${product.getId()};
                 if (cartItems) {
                     cartItems = JSON.parse(cartItems);
@@ -321,10 +321,10 @@
                 } else {
                     cartItems[productId] = parseInt(quantity);
                 }
-
-                localStorage.setItem("cartItems", JSON.stringify(cartItems));
+                
+                setCookie("cartItems", JSON.stringify(cartItems), 7);
                 document.getElementById("quantity").value = 1;
-                displayCartItems();
+                displayCartLength();
                 window.alert("Added product name ${product.getName()} to cart.");
             }
             document.getElementById("addToCartBtn").addEventListener("click", addToCart);

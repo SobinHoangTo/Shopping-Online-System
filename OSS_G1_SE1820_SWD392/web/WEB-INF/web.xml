@@ -17,6 +17,14 @@
         <servlet-class>controllers.Clients.CartServlet</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>OrderConfirmServlet</servlet-name>
+        <servlet-class>controllers.Clients.OrderConfirmServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>OrderServlet</servlet-name>
+        <servlet-class>controllers.Clients.OrderServlet</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>OrderListServlet</servlet-name>
         <servlet-class>controllers.Customer.OrderListServlet</servlet-class>
     </servlet>
@@ -39,6 +47,14 @@
     <servlet-mapping>
         <servlet-name>CartServlet</servlet-name>
         <url-pattern>/cart</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>OrderConfirmServlet</servlet-name>
+        <url-pattern>/order-confirm</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>OrderServlet</servlet-name>
+        <url-pattern>/order</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>OrderListServlet</servlet-name>
