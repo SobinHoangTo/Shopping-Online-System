@@ -29,8 +29,8 @@
                         Bạn đã giao dịch thành công! 
                         <i class="fas fa-check-circle"></i>
                     </h3>
-                    <p style="font-size: 18px; margin-top: 15px;">Vui lòng để ý số điện thoại của nhân viên tư vấn:</p>
-                    <strong style="color: red; font-size: 24px;">0356879558</strong>
+                    <p style="font-size: 18px; margin-top: 15px;">Cảm ơn quý khách đã dùng dịch vụ của chúng tôi.</p>
+                    <strong style="color: red; font-size: 24px;"><a href="home">BACK TO HOME</a></strong>
                 </div>
             </c:if>
 
@@ -43,6 +43,8 @@
                     <p style="font-size: 18px; margin-top: 15px;">Cảm ơn quý khách đã dùng dịch vụ của chúng tôi.</p>
                     <p style="font-size: 18px;">Liên hệ tổng đài để được tư vấn:</p>
                     <strong style="color: red; font-size: 24px;">0356879558</strong>
+                    <br>
+                    <strong style="color: red; font-size: 24px;"><a href="home">BACK TO HOME</a></strong>
                 </div>
             </c:if>
 
@@ -54,6 +56,8 @@
                     </h3>
                     <p style="font-size: 18px; margin-top: 15px;">Vui lòng để ý số điện thoại của nhân viên tư vấn:</p>
                     <strong style="color: red; font-size: 24px;">0356879558</strong>
+                    <br>
+                    <strong style="color: red; font-size: 24px;"><a href="home">BACK TO HOME</a></strong>
                 </div>
             </c:if>
         </section>

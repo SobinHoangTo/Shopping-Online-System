@@ -78,7 +78,7 @@ public class VNPayReturnServlet extends HttpServlet {
                 boolean transSuccess = false;
                 if ("00".equals(request.getParameter("vnp_TransactionStatus"))) {
                     //update banking system
-                    newOrder.setStatus(PaymentStatus.PAID);
+                    newOrder.setPaymentStatus(PaymentStatus.PAID);
                     OrderServices orderServices = new OrderServices();
                     orderServices.CreateOrderWithGHN(newOrder, productIds, cartItemsJson, district, ward);
                     transSuccess = true;
