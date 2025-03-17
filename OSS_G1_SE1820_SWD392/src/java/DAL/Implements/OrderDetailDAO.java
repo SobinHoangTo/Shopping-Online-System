@@ -49,7 +49,7 @@ public class OrderDetailDAO extends GeneralDAO<OrderDetail> implements IOrderDet
     @Override
     public boolean Update(OrderDetail entity) {
         try {
-            String sql = "[dbo].[" + TableNames.ORDER_DETAIL +  "]\n"
+            String sql = "UPDATE [dbo].[" + TableNames.ORDER_DETAIL +  "]\n"
                     + "   SET [orderId] = ?\n"
                     + "      ,[productID] = ?\n"
                     + "      ,[quantity] = ?\n"
@@ -70,7 +70,7 @@ public class OrderDetailDAO extends GeneralDAO<OrderDetail> implements IOrderDet
     @Override
     public boolean Delete(int id) {
         try {
-            String sql = "update from " + TableNames.ORDER_DETAIL + " set status=? where id=?";
+            String sql = "update " + TableNames.ORDER_DETAIL + " set status=? where id=?";
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setString(1, GeneralStatus.INACTIVE);
             ps.setInt(2, id);
@@ -82,4 +82,22 @@ public class OrderDetailDAO extends GeneralDAO<OrderDetail> implements IOrderDet
         }
     }
     
+    public ArrayList<OrderDetail> GetByOrderId(int orderId) {
+    try {
+            ArrayList<OrderDetail> list = new ArrayList<>();
+            String sql = "select * from " + TableNames.ORDER_DETAIL + " where orderId = ?";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setInt(1, orderId);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                list.add(GetByResultSet(rs));
+            }
+            rs.close();
+            ps.close();
+            return list;
+        } catch (Exception a) {
+            System.err.println(a.getMessage());
+            return new ArrayList<>();
+        }    
+    }
 }

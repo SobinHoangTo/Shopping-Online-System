@@ -17,4 +17,6 @@ public class GHNConfig {
     public static final String GET_DISTRICT_URL = "https://dev-online-gateway.ghn.vn/shiip/public-api/master-data/district";
     public static final String GET_WARD_URL = "https://dev-online-gateway.ghn.vn/shiip/public-api/master-data/ward";
     public static final String CALCULATE_SHIPPING_FEE_URL = "https://dev-online-gateway.ghn.vn/shiip/public-api/v2/shipping-order/fee";
+    public static final String ORDER_DETAIL_URL = "https://dev-online-gateway.ghn.vn/shiip/public-api/v2/shipping-order/detail";
+    
 }

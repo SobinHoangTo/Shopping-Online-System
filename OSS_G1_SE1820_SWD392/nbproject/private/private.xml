@@ -3,10 +3,16 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/FPT_University/TAILIEUKI7/SWD392/Project_Swd/oss/OSS_G1_SE1820_SWD392/src/java/services/ProductServices.java</file>
-            <file>file:/D:/FPT_University/TAILIEUKI7/SWD392/Project_Swd/oss/OSS_G1_SE1820_SWD392/src/java/data/DBContext.java</file>
-            <file>file:/D:/FPT_University/TAILIEUKI7/SWD392/Project_Swd/oss/OSS_G1_SE1820_SWD392/src/java/config/VNPayConfig.java</file>
-            <file>file:/D:/FPT_University/TAILIEUKI7/SWD392/Project_Swd/oss/OSS_G1_SE1820_SWD392/src/java/config/AppConfig.java</file>
+            <file>file:/E:/FPT_SP25/SWD392/Project/oss/OSS_G1_SE1820_SWD392/src/java/models/DTOs/ProductInOrderDTO.java</file>
+            <file>file:/E:/FPT_SP25/SWD392/Project/oss/OSS_G1_SE1820_SWD392/src/java/controllers/Customer/OrderDetailServlet.java</file>
+            <file>file:/E:/FPT_SP25/SWD392/Project/oss/OSS_G1_SE1820_SWD392/src/java/services/OrderServices.java</file>
+            <file>file:/E:/FPT_SP25/SWD392/Project/oss/OSS_G1_SE1820_SWD392/src/java/controllers/Customer/OrderListServlet.java</file>
+            <file>file:/E:/FPT_SP25/SWD392/Project/oss/OSS_G1_SE1820_SWD392/src/java/DAL/Interfaces/IOrderDetailDAO.java</file>
+            <file>file:/E:/FPT_SP25/SWD392/Project/oss/OSS_G1_SE1820_SWD392/src/java/DAL/Implements/OrderDAO.java</file>
+            <file>file:/E:/FPT_SP25/SWD392/Project/oss/OSS_G1_SE1820_SWD392/web/Views/Customer/OrderDetail.jsp</file>
+            <file>file:/E:/FPT_SP25/SWD392/Project/oss/OSS_G1_SE1820_SWD392/src/java/services/GHNService.java</file>
+            <file>file:/E:/FPT_SP25/SWD392/Project/oss/OSS_G1_SE1820_SWD392/src/java/services/OrderDetailServices.java</file>
+            <file>file:/E:/FPT_SP25/SWD392/Project/oss/OSS_G1_SE1820_SWD392/src/java/DAL/Implements/OrderDetailDAO.java</file>
         </group>
     </open-files>
 </project-private>
