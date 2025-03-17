@@ -76,7 +76,7 @@ public class OrderDAO extends GeneralDAO<Order> implements IOrderDAO {
     @Override
     public boolean Update(Order entity) {
         try {
-            String sql = "[dbo].[orders]\n"
+            String sql = "UPDATE [dbo].[orders]\n"
                     + "   SET [userId] = ?\n"
                     + "      ,[address] = ?\n"
                     + "      ,[phone] = ?\n"
@@ -103,6 +103,7 @@ public class OrderDAO extends GeneralDAO<Order> implements IOrderDAO {
             ps.setString(8, entity.getStatus());
             ps.setString(9, entity.getTrackingNumber());
             ps.setDouble(10, entity.getAmount());
+            ps.setInt(11, entity.getId());
             int rowsAffected = ps.executeUpdate();
             return rowsAffected > 0;
         } catch (Exception a) {
@@ -114,7 +115,7 @@ public class OrderDAO extends GeneralDAO<Order> implements IOrderDAO {
     @Override
     public boolean Delete(int id) {
         try {
-            String sql = "update from orders set status=? where id=?";
+            String sql = "update orders set status=? where id=?";
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setString(1, GeneralStatus.INACTIVE);
             ps.setInt(2, id);

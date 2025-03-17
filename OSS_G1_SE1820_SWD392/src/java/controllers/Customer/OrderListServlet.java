@@ -16,7 +16,7 @@ public class OrderListServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        ArrayList<Order> listOrder = new OrderServices().GetByUserId(4);
+        ArrayList<Order> listOrder = new OrderServices().GetByUserId(3);
         
         request.setAttribute("listOrder", listOrder);
         request.getRequestDispatcher("Views/Customer/OrderList.jsp").forward(request, response);

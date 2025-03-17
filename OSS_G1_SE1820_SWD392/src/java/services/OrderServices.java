@@ -49,4 +49,8 @@ public class OrderServices {
         return false;
 
     }
+    
+    public Order GetOrderById(int id) {
+        return orderDAO.Read(id);
+    }
 }
