@@ -9,6 +9,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import java.util.Arrays;
 import models.Entities.Order;
 import models.Enums.GeneralStatus;
@@ -53,8 +54,18 @@ public class OrderServlet extends HttpServlet {
                     response.sendRedirect("home");
                     return;
                 case PaymentMethod.ONLINE_PAYMENT:
+                    HttpSession session = request.getSession();
+                    session.setAttribute("newOrder", newOrder);
+                    session.setAttribute("productIds", productIds);
+                    session.setAttribute("cartItemsJson", cartItemsJson);
+                    session.setAttribute("district", district);
+                    session.setAttribute("ward", ward);
+                    request.setAttribute("totalPrice", totalPrice);
+                    request.getRequestDispatcher("/vnpay").forward(request, response);
                     break;
                 case PaymentMethod.BANK_TRANSFER:
+                    request.setAttribute("totalPrice", totalPrice);
+                    request.getRequestDispatcher("/payos").forward(request, response);
                     break;
                 default:
                     throw new AssertionError();
