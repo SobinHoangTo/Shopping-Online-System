@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package services;
 
 import config.GHNConfig;
@@ -17,10 +13,6 @@ import models.Enums.PaymentMethod;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-/**
- *
- * @author vdqvi
- */
 public class GHNService {
 
     public JSONObject CreateOrder(String name, String phone, String address, String ward, String district, String paymentMethod, double totalPrice, ArrayList<Product> productList, JSONObject cartItemsJson) {
@@ -96,4 +88,44 @@ public class GHNService {
         }
         return null;
     }
+
+    public JSONObject GetOrderStatus(String orderCode) {
+        try {
+            URL url = new URL(GHNConfig.ORDER_DETAIL_URL + "?order_code=" + orderCode);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+
+            connection.setRequestMethod("GET");
+            connection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+            connection.setRequestProperty("Token", GHNConfig.TOKEN_API);
+
+            int responseCode = connection.getResponseCode();
+            BufferedReader reader;
+            StringBuilder response = new StringBuilder();
+
+            if (responseCode == 200) {
+                reader = new BufferedReader(new InputStreamReader(connection.getInputStream(), "utf-8"));
+            } else {
+                reader = new BufferedReader(new InputStreamReader(connection.getErrorStream(), "utf-8"));
+            }
+
+            String line;
+            while ((line = reader.readLine()) != null) {
+                response.append(line.trim());
+            }
+            reader.close();
+
+            JSONObject jsonResponse = new JSONObject(response.toString());
+
+            if (responseCode != 200) {
+                System.err.println("GHN Tracking Error: " + jsonResponse.toString(2));
+            }
+
+            return jsonResponse;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
 }
