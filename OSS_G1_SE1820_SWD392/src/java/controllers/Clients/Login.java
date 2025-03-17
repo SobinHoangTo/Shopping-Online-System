@@ -15,7 +15,8 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import models.Entities.GoogleAccount;
 import models.Entities.User;
-import services.utils.Email;
+import services.Email;
+
 
 /**
  *
@@ -76,7 +77,7 @@ public class Login extends HttpServlet {
         if(user == null){
             User newUser = new User( acc.getEmail(), "1", acc.getName(), "user");
             userDao.Create(newUser);
-            //email.sendEmail(acc.getEmail(), "WELCOME TO OSS");
+            email.sendEmail(acc.getEmail(), "WELCOME TO OSS"+"\n" +"Your password is: 1");
             
             createSession(request, newUser);
         }else{
